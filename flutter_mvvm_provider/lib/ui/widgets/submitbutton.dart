@@ -16,20 +16,19 @@ class SubmitButton extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    Color? _color = color == null ? mainColor : color;
     return Container(
       width: double.infinity,
       child: TextButton(
         onPressed: busy ? null : () => onPressed,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color?>(_color),
+          backgroundColor: MaterialStateProperty.all<Color?>(color),
           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
             EdgeInsets.symmetric(vertical: 12),
           ),
           shape: MaterialStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               side:
-                  BorderSide(color: _color, width: 1, style: BorderStyle.solid),
+                  BorderSide(color: color, width: 1, style: BorderStyle.solid),
               borderRadius: BorderRadius.circular(6.0),
             ),
           ),

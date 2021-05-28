@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class CustomDialogBox extends StatefulWidget {
   final String title, descriptions, labelCancel, labelSubmit;
   final Function? onSubmit;
-  final bool? singleButton;
+  final bool singleButton;
   final Widget titleIcon;
   final Color? colorSubmit;
 
@@ -14,7 +14,7 @@ class CustomDialogBox extends StatefulWidget {
     this.labelCancel = 'Close',
     this.labelSubmit = 'Submit',
     this.onSubmit,
-    this.singleButton,
+    this.singleButton = false,
     this.titleIcon = const SizedBox(),
     this.colorSubmit,
   }) : super(key: key);
@@ -75,69 +75,52 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
           SizedBox(
             height: 22,
           ),
-          widget.singleButton == null || widget.singleButton == false
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            color: Colors.grey,
-                            width: 0.5,
-                            style: BorderStyle.solid),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        widget.labelCancel,
-                        style: greyLabelButton,
-                      ),
-                    ),
-                    TextButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color?>(
-                          widget.colorSubmit == null
-                              ? Colors.green
-                              : widget.colorSubmit,
-                        ),
-                        shape: MaterialStateProperty.all<OutlinedBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                      onPressed: () => widget.onSubmit,
-                      child: Text(
-                        widget.labelSubmit,
-                        style: whiteLabelButton,
-                      ),
-                    ),
-                  ],
-                )
-              : Container(
-                  width: double.infinity,
-                  alignment: Alignment.centerRight,
-                  child: FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color?>(
+                    Colors.white,
+                  ),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
                       side: BorderSide(
                           color: Colors.grey,
                           width: 0.5,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text(
-                      widget.labelCancel,
-                      style: greyLabelButton,
+                  ),
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(
+                  widget.labelCancel,
+                  style: greyLabelButton,
+                ),
+              ),
+              if (widget.singleButton)
+                TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color?>(
+                      widget.colorSubmit == null
+                          ? Colors.green
+                          : widget.colorSubmit,
+                    ),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                   ),
-                )
+                  onPressed: () => widget.onSubmit!(),
+                  child: Text(
+                    widget.labelSubmit,
+                    style: whiteLabelButton,
+                  ),
+                ),
+            ],
+          )
         ],
       ),
     );

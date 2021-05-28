@@ -58,7 +58,7 @@ class BaseVM extends ChangeNotifier {
           labelSubmit: labelSubmit!,
           colorSubmit: colorSubmit,
           onSubmit: onSubmit,
-          singleButton: singleButton,
+          singleButton: singleButton!,
         );
       },
     ).then((value) {
