@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Toko Gadai Owner',
+        title: 'Flutter MVVM Provider',
         navigatorKey: locator<NavigationService>().navigatorKey,
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
