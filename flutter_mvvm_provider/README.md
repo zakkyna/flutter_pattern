@@ -1,4 +1,4 @@
-# flutter_flutter_mvvm_provider
+# flutter_mvvm_provider
 
 A new Flutter project.
 
